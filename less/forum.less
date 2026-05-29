@@ -1,0 +1,36 @@
+.linkposterCard {
+  background: var(--button-bg);
+  color: var(--contrast-color, var(--hero-color));
+  border-radius: var(--border-radius);
+  padding: 20px;
+  margin: 0 0 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+
+  .linkposterImage {
+    width: 20%;
+
+    figure {
+      background: var(--hero-color);
+      border-radius: var(--border-radius);
+      margin: 0;
+    }
+  }
+
+  .linkposterBody {
+    display: flex;
+    flex-direction: column;
+
+    .linkposterTitle {
+      font-size: 22px;
+      font-weight: normal;
+      line-height: 1.5em;
+    }
+
+    linkposterDescription {
+      color: var(--muted-color);
+    }
+  }
+}
