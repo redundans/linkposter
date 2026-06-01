@@ -45,7 +45,4 @@ return [
         ->cast('linkposter_url', 'string')
         ->cast('linkposter_description', 'string')
         ->cast('linkposter_thumbnail', 'string'),
-
-    (new Extend\Settings())
-        ->default('linkposter.api_key', 'standardvärde'),
 ];

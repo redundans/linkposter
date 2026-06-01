@@ -1,27 +1,38 @@
 .linkposterCard {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+
   background: var(--button-bg);
   color: var(--contrast-color, var(--hero-color));
   border-radius: var(--border-radius);
-  padding: 20px;
-  margin: 0 0 15px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 20px;
 
   .linkposterImage {
-    width: 20%;
+    flex: 0 0 33.333%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
 
     figure {
-      background: var(--hero-color);
-      border-radius: var(--border-radius);
       margin: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
     }
   }
 
   .linkposterBody {
+    flex: 1;
+    padding: 0 32px;
     display: flex;
     flex-direction: column;
+    gap: 8px;
+    justify-content: center;
 
     .linkposterTitle {
       font-size: 22px;
