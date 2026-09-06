@@ -101,7 +101,10 @@ class LinkposterEventSubscriber
 
                     if ($image_url) {
                         $clean_name = basename(parse_url($image_url, PHP_URL_PATH));
-                        $filename = time() . '_' . (preg_replace('/[^a-zA-Z0-9_.-]/', '', $clean_name) ?: 'thumb.jpg');
+                        if (!preg_match('/\.jpg$/i', $clean_name)) {
+                            $clean_name .= '.jpg';
+                        }
+                        $filename = time() . '_' . $clean_name;
 
                         try {
                             $client = new Client(['timeout' => 5.0]);
@@ -112,7 +115,6 @@ class LinkposterEventSubscriber
                             $thumbnail = $image->cover(1024, 1024);
                             $thumbnail_encoded = $thumbnail->toJpeg()->toString();
 
-                            // Ta bort den gamla tumnagelbilden om den finns för att inte skräpa ner
                             if ($discussion->linkposter_thumbnail && $this->assetsDisk->has("linkposter/{$discussion->linkposter_thumbnail}")) {
                                 $this->assetsDisk->delete("linkposter/{$discussion->linkposter_thumbnail}");
                             }
