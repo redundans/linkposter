@@ -109,7 +109,7 @@ class LinkposterEventSubscriber
                             $image_content = $response->getBody()->getContents();
                             $manager = new ImageManager(new GdDriver());
                             $image = $manager->read($image_content);
-                            $thumbnail = $image->cover(150, 150);
+                            $thumbnail = $image->cover(1024, 1024);
                             $thumbnail_encoded = $thumbnail->toJpeg()->toString();
 
                             // Ta bort den gamla tumnagelbilden om den finns för att inte skräpa ner
