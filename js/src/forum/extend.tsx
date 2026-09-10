@@ -11,6 +11,8 @@ export default function() {
     const postBody = this.element.querySelector('.Post-body');
 
     if (postBody && discussion.attribute('linkposter_url')) {
+      const thumbnail = discussion.attribute('linkposter_thumbnail');
+
       const vnode = m(
         'a',
         {
@@ -19,7 +21,8 @@ export default function() {
           target: '_blank',
           rel: 'noopener noreferrer'
         },
-        m(
+        // Rita endast ut bilden om thumbnail inte är null eller tom
+        thumbnail ? m(
           'div',
           {
             class: 'linkposterImage'
@@ -30,11 +33,11 @@ export default function() {
             m(
               'img',
               {
-                src: '/assets/linkposter/' + discussion.attribute('linkposter_thumbnail')
+                src: '/assets/linkposter/' + thumbnail
               }
             )
           )
-        ),
+        ) : null,
         m(
           'div',
           {
