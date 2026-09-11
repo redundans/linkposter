@@ -17,6 +17,8 @@ use Flarum\Discussion\Discussion;
 use Illuminate\Support\Arr;
 use Flarum\Post\Event\Saving;
 use Flarum\Api\Schema;
+use Flarum\Search\Database\DatabaseSearchDriver;
+use Flarum\Discussion\Search\DiscussionSearcher;
 
 return [
     (new Extend\Frontend('forum'))
@@ -40,6 +42,9 @@ return [
 
     (new Extend\Event)
         ->subscribe(Listener\LinkposterEventSubscriber::class),
+
+    (new Extend\SearchDriver(DatabaseSearchDriver::class))
+        ->addFilter(DiscussionSearcher::class, Filter\LinkposterUrlFilter::class),
 
     (new Extend\Model(Discussion::class))
         ->cast('linkposter_url', 'string')
